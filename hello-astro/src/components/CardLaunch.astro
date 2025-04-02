@@ -1,0 +1,43 @@
+---
+interface Props {
+    id: string,
+    name: string,
+    details: string | null,
+    img: string,
+    success: boolean,
+    flightNumber: number,    
+}
+
+const { id, name, details, img, success, flightNumber } = Astro.props as Props
+---
+
+<div onclick="location.href=`/launch/${id}`"
+    class="main-div bg-white shadow-lg rounded-lg overflow-hidden p-4">
+    <img src={img} alt="Launch Image" class="w-full h-48 object-contain" />
+    <div class="p-4">
+        <h2 class="text-gray-100 text-xl font-bold mb-2 inline">{name}</h2>
+        <h3 class="text-gray-200 text-xl font-bold-md mb-2 inline">- Flight #{flightNumber}</h3>
+        <p class="text-gray-300 mb-4 pt-2">{details}</p>
+        <small class:list={[
+            'text-sm px-2 py-1 rounded-lg font-bold',
+            {
+                'bg-green-500 text-green-200': success,
+                'bg-red-500 text-red-300': !success
+            }
+        ]}>
+            Launch {success ? 'Successful' : 'Failed'}
+        </small>
+    </div>
+</div>
+<style>
+    .main-div {
+        background-color: #ffffff0a;
+        border: 0.5px solid #ffffff66;
+        transition: all 0.2s;
+    }
+    .main-div:hover {
+        background-color: #ffffff2a;
+        border: 1px solid #ffffff;
+        transform: scale(1.05);
+    }
+</style>

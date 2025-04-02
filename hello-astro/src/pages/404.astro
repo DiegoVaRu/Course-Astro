@@ -1,0 +1,31 @@
+---
+import '../styles/global.css'
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="404">
+    <article>
+        <h1 class="font-bold-sm text-center text-gray-300" style="font-size: 1.5rem;"> 
+            <span class="font-bold text-center block text-gray-100" style="font-size: 4rem;">404</span>
+            Page not found
+        </h1>
+        <img src="https://midu.dev/images/this-is-fine-404.gif" alt="404">
+    </article>
+</Layout>
+<style>
+    article {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: calc(100vh - 128px);
+    }
+    h1 {
+        line-height: 1;
+    }
+    img {
+        width: 300px;
+        height: auto;
+        margin-top: 2rem;
+    }
+</style>
