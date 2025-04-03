@@ -15,8 +15,7 @@ if (!id) {
 }
 ---
 
-<div onclick="location.href=`/launch/${id}`"
-    class="main-div bg-white shadow-lg rounded-lg overflow-hidden p-4">
+<article class="bg-white shadow-lg rounded-lg overflow-hidden p-4">
     <img src={img} alt="Launch Image" class="w-full h-48 object-contain" />
     <div class="p-4">
         <h2 class="text-gray-100 text-xl font-bold mb-2 inline">{name}</h2>
@@ -31,17 +30,23 @@ if (!id) {
         ]}>
             Launch {success ? 'Successful' : 'Failed'}
         </small>
+        <a href={`/launch/${id}`} class="text-gray-300 font-light underline pl-4">
+            Ver más
+        </a>
     </div>
-</div>
+</article>
 <style>
-    .main-div {
+    article {
         background-color: #ffffff0a;
         border: 0.5px solid #ffffff66;
         transition: all 0.2s;
     }
-    .main-div:hover {
+    article:hover {
         background-color: #ffffff2a;
         border: 1px solid #ffffff;
         transform: scale(1.05);
+    }
+    a:hover {
+        color: #ffffff;
     }
 </style>

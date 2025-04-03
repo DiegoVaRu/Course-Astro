@@ -1,4 +1,5 @@
 ---
+import '../../styles/global.css';
 import Layout from "../../layouts/Layout.astro";
 import { getLaunchById } from "../../services/spacex";
 import { getLatestLaunches } from "../../services/spacex";
@@ -6,12 +7,10 @@ import { getLatestLaunches } from "../../services/spacex";
 export async function getStaticPaths() {
     const launches = await getLatestLaunches();
 
-    return {
-        paths: launches.map(launch => ({
-            params: { id: launch.id }
-        })),
-        fallback: false, // No permite rutas no definidas en el paths
-    };
+    return launches.map(launch => ({
+        params: { id: launch.id },
+        props: { id: launch.id },
+    }))
 }
 
 const { id } = Astro.params
@@ -20,7 +19,27 @@ const launch = await getLaunchById({ id })
 ---
 
 <Layout title=`Lanzamiento ${id}`>
-    <article>
-        {launch.id}
+    <article class="shadow-2xl rounded-lg overflow-hidden p-4">
+        <img src={launch.links.patch.small} alt="Launch Image" class="w-full h-48 object-contain" />
+        <div class="p-4">
+            <h2 class="text-gray-100 text-xl font-bold mb-2 inline">{launch.name}</h2>
+            <h3 class="text-gray-200 text-xl font-bold-md mb-2 inline">- Flight #{launch.flight_number}</h3>
+            <p class="text-gray-300 mb-4 pt-2">{launch.details}</p>
+            <small class:list={[
+                'text-sm px-2 py-1 rounded-lg font-bold',
+                {
+                    'bg-green-500 text-green-200': launch.success,
+                    'bg-red-500 text-red-300': !launch.success
+                }
+            ]}>
+                Launch {launch.success ? 'Successful' : 'Failed'}
+            </small>
+        </div>
     </article>
+    <style>
+        article {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+    </style>
 </Layout>
