@@ -19,7 +19,7 @@ export const getLatestLaunches = async () => {
     return launches
 }
 
-export const getLauncheById = async ({id}: {id: string}) => {
+export const getLaunchById = async ({id}: {id: string}) => {
     const res = await fetch(`https://api.spacexdata.com/v4/launches/${id}`)
     
     const launch = (await res.json()) as Doc

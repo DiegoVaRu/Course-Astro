@@ -8,7 +8,11 @@ interface Props {
     flightNumber: number,    
 }
 
-const { id, name, details, img, success, flightNumber } = Astro.props as Props
+const { id, name, details, img, success, flightNumber } = Astro.props as Props;
+
+if (!id) {
+    console.error("The 'id' property is missing or undefined.");
+}
 ---
 
 <div onclick="location.href=`/launch/${id}`"
