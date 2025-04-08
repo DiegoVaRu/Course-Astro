@@ -1,0 +1,25 @@
+---
+const href = Astro.props.href
+---
+
+<a href={href}>
+    <slot />
+</a>
+
+<style>
+    a {
+		display: flex;
+		flex-direction: row;
+		background-color: #ffffff11;
+		color: #ffffff88;
+		border-radius: 10px;
+		padding: 5px 10px;
+		gap: 5px;
+		transition: transform .2s ease-in-out;
+	}
+	a:hover {
+		color: #fff;
+		transform: scale(1.05);
+		background-color: #ffffff22;
+	}
+</style>

@@ -4,16 +4,22 @@ import Layout from "../../layouts/Layout.astro";
 import { getLaunchById } from "../../services/spacex";
 import { getLatestLaunches } from "../../services/spacex";
 
-export async function getStaticPaths() {
+export const prerender = false // al ser SSR no necesito el getStaticPaths
+
+/*export async function getStaticPaths() {
     const launches = await getLatestLaunches();
 
     return launches.map(launch => ({
         params: { id: launch.id },
         props: { id: launch.id },
     }))
-}
+}*/
 
 const { id } = Astro.params
+
+if (!id) {
+    throw new Error("Launch ID is required");
+}
 
 const launch = await getLaunchById({ id })
 ---

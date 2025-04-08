@@ -1,16 +1,40 @@
 ---
 import Badge from '../components/Badge.astro';
+import Experience from '../components/Experience.astro';
+import SocialPil from '../components/SocialPil.astro';
+import PageSection from '../components/PageSection.astro';
+import Github from '../components/icons/Github.astro';
+import Linkedin from '../components/icons/Linkedin.astro';
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout>
+<Layout title="Divaru Portfolio - Web Developer">
 	<main>
-		<img 
-			class="rounded-full w-20 h-20 my-5"
-			src="https://unavatar.io/github/DiegoVaRu" 
-			alt="Divaru Avatar"
-    	/>
-		<h1 class="text-5xl font-bold">Hey, soy Divaru <div><Badge>Disponible para trabajar</Badge></div></h1>
+		<PageSection id="inicio">
+			<img 
+				class="rounded-full w-20 h-20 my-5"
+				src="https://unavatar.io/github/DiegoVaRu" 
+				alt="Divaru Avatar"
+			/>
+			<h1 class="text-5xl font-bold flex flex-row gap-5">
+				Hey, soy Divaru <div><Badge>Disponible para trabajar</Badge></div>
+			</h1>
+			<h2 class="my-5 text-xl opacity-80">
+				Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae quae ipsam ad consequuntur rerum earum 
+				laborum corporis. Rem unde facere, eaque dolor voluptates fugiat error tenetur provident non minus porro!
+			</h2>
+			<nav>
+				<SocialPil href="https://www.linkedin.com/in/diego-valero-rusciel-094594301/">
+					<Linkedin />LinkedIn
+				</SocialPil>
+				<SocialPil href="https://github.com/DiegoVaRu">
+					<Github />GitHub
+				</SocialPil>
+			</nav>
+		</PageSection>
+		<PageSection id="experiencia">
+			<Experience />
+		</PageSection>
 	</main>
 </Layout>
 
@@ -19,4 +43,14 @@ import Layout from '../layouts/Layout.astro';
 		width: 50%;
 		margin: 6% auto 0;
 	}
+	h1 div {
+		display: flex;
+		place-items: center;
+	}
+	nav {
+		display: flex;
+		flex-direction: row;
+		gap: 10px;
+		margin: 30px 0 0;
+	}	
 </style>
