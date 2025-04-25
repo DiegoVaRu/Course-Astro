@@ -16,7 +16,7 @@ if (!id) {
 ---
 
 <article class="bg-white shadow-lg rounded-lg overflow-hidden p-4">
-    <img src={img} alt="Launch Image" class="w-full h-48 object-contain" />
+    <img transition:name={`img-${id}`} src={img} alt="Launch Image" class="w-full h-48 object-contain" />
     <div class="p-4">
         <h2 class="text-gray-100 text-xl font-bold mb-2 inline">{name}</h2>
         <h3 class="text-gray-200 text-xl font-bold-md mb-2 inline">- Flight #{flightNumber}</h3>

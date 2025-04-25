@@ -1,19 +1,16 @@
 ---
 import '../../styles/global.css';
 import Layout from "../../layouts/Layout.astro";
-import { getLaunchById } from "../../services/spacex";
-import { getLatestLaunches } from "../../services/spacex";
+import { getLatestLaunches, getLaunchById } from "../../services/spacex";
 
-export const prerender = false // al ser SSR no necesito el getStaticPaths
-
-/*export async function getStaticPaths() {
+export async function getStaticPaths() {
     const launches = await getLatestLaunches();
 
     return launches.map(launch => ({
         params: { id: launch.id },
         props: { id: launch.id },
     }))
-}*/
+}
 
 const { id } = Astro.params
 
@@ -26,7 +23,7 @@ const launch = await getLaunchById({ id })
 
 <Layout title=`Lanzamiento ${id}`>
     <article class="shadow-2xl rounded-lg overflow-hidden p-4">
-        <img src={launch.links.patch.small} alt="Launch Image" class="w-full h-48 object-contain" />
+        <img transition:name={`img-${id}`} src={launch.links.patch.small} alt="Launch Image" class="w-full h-48 object-contain" />
         <div class="p-4">
             <h2 class="text-gray-100 text-xl font-bold mb-2 inline">{launch.name}</h2>
             <h3 class="text-gray-200 text-xl font-bold-md mb-2 inline">- Flight #{launch.flight_number}</h3>
